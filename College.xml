@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<College>
+
+<Student>
+<name>Abc</name>
+<rollno>101</rollno>
+</Student>
+
+<Faculty>
+<branch>cse</branch>
+<subject>physics</subject>
+
+
+</Faculty>
+
+
+</College>
