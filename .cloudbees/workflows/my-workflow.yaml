@@ -1,0 +1,32 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: workflow
+name: My workflow
+on:
+  push:
+    branches:
+      - "**"
+jobs:
+  build:
+    steps:
+      - name: Say hello
+        uses: docker://golang:1.20.3-alpine3.17
+        shell: sh
+        run: |
+          echo "hello world"
+  MavenClean:
+    steps:
+      - run: mvn clean
+        uses: "docker://maven:3.8-openjdk-11 "
+        shell: sh
+  MavenPackage:
+    steps:
+      - run: mvn package
+        uses: docker://maven:3.8-openjdk-11
+        shell: "sh "
+  MavenPush:
+    steps:
+      - run: |-
+          git remote add new-repo https://${{ secrets.Git_Access}}@github.com/SavadaJagan007/Github_project1
+          git push new-repo main
+        uses: docker://maven:3.8-openjdk-11
+        shell: sh
